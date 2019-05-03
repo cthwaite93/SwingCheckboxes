@@ -21,6 +21,8 @@ public class Checkboxes extends JFrame implements ItemListener{
 	private static final long serialVersionUID = 1L;
 	private static int width = 640;
 	private static int height = 360;
+	private static float minSize = 24;
+	private static float maxSize = 32;
 	private static String text = "We play with Checkboxes...";
 	
 	private JLabel jlText;
@@ -47,6 +49,7 @@ public class Checkboxes extends JFrame implements ItemListener{
 	private void initialize() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(width, height);
+		setResizable(false);
 		setVisible(true);
 	}
 	
@@ -56,11 +59,12 @@ public class Checkboxes extends JFrame implements ItemListener{
 		this.labelPanel.setBackground(Color.WHITE);
 		this.labelPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.BLACK));
 		
-		jlText = new JLabel(text);
-		jlText.setHorizontalAlignment(JLabel.CENTER);
+		this.jlText = new JLabel(text);
+		Font f = this.jlText.getFont();
+		this.jlText.setFont(this.jlText.getFont().deriveFont(f.getStyle(), minSize));
+		this.jlText.setHorizontalAlignment(JLabel.CENTER);
 		
-		this.labelPanel.add(jlText, BorderLayout.CENTER);
-		//this.labelPanel.setBackground(Color.PINK);
+		this.labelPanel.add(this.jlText, BorderLayout.CENTER);
 		
 		return this.labelPanel;
 	}
@@ -155,10 +159,11 @@ public class Checkboxes extends JFrame implements ItemListener{
 				
 				break;
 			case "Big":
+				Font f = this.jlText.getFont();
 				if (e.getStateChange() == 1) {
-					//this.jlText.setFont(this.jlText.setFont()));
+					this.jlText.setFont(this.getFont().deriveFont(f.getStyle(), maxSize));
 				} else if (e.getStateChange() == 2) {
-					this.jlText.setFont(this.jlText.getFont().deriveFont(12));
+					this.jlText.setFont(this.getFont().deriveFont(f.getStyle(), minSize));
 				}
 				break;
 		}
