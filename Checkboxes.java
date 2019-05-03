@@ -53,6 +53,7 @@ public class Checkboxes extends JFrame{
 		this.labelPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, Color.BLACK));
 		
 		jlText = new JLabel(text);
+		jlText.setHorizontalAlignment(JLabel.CENTER);
 		
 		this.labelPanel.add(jlText, BorderLayout.CENTER);
 		//this.labelPanel.setBackground(Color.PINK);
